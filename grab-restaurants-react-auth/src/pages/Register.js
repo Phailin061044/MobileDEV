@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Input, Form } from "reactstrap";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+
 import AuthService from "../services/auth.service";
 
 const Register = () => {
@@ -37,6 +38,9 @@ const Register = () => {
       (response) => {
         setMessage(response.data.message);
         setSuccessfull(true);
+        setInterval(() => {
+          navigate("/login")
+        }, 3000);
       },
       (error) => {
         const resMessage =

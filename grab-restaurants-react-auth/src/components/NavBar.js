@@ -1,49 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+} from "reactstrap";
 
-const NavBar = () => {
+function NavBar({ currentUser, logout }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark">
-      <Link className="navbar-brand" to="/">
-        Grab Restaurants
-      </Link>
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul className="navbar-nav">
-          <li className="nav-item active">
-            <Link className="nav-link" to="/">
-              Home <span className="sr-only"></span>
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/Add">
-              Add
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/search">
-              Search
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/register">
-              Register
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <div>
+      <Navbar className="navbar navbar-expand-lg navbar-dark">
+        <NavbarBrand href="/">Grabrestaurants</NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="me-auto" navbar>
+            <NavItem>
+              <NavLink href="/home">Home</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/add"> Add</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/search">Search</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/register"> Register</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/login" onClick={currentUser ? logout : ""}>
+                {currentUser ? "Logout" : "Login"}
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/profile">
+                {" "}
+                Profile{(currentUser && currentUser?.username) || ""}
+              </NavLink>
+            </NavItem>
+          </Nav>
+        </Collapse>
+      </Navbar>
+    </div>
   );
-};
+}
 
 export default NavBar;
