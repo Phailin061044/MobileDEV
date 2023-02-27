@@ -1,0 +1,25 @@
+{
+  "employee": [
+    {
+      "id": 1,
+      "name": "Pattaradanai Santanipat",
+      "email": "Mok@webmail.com",
+      "phone": "0123456789",
+      "status": "true"
+    },
+    {
+      "id": 2,
+      "name": "Phailin Sarapimpa",
+      "email": "Mook@gmail.com",
+      "phone": "0123456789",
+      "status": "true"
+    },
+    {
+      "name": "Pattaradanai",
+      "email": "Mok@webmail.com",
+      "phone": "0123456789",
+      "status": "true",
+      "id": 3
+    }
+  ]
+}
